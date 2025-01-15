@@ -1,8 +1,8 @@
 # Create your views here.
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-
+from django.template.loader import render_to_string
 monthly_challenges = {
     "january": "complete 20% dsa",
     "february": "complete 40% dsa and 20% development project",
@@ -44,4 +44,4 @@ def monthly_challenge(request, month):
             "month_name" : month.capitalize()
         })
     except:
-        return HttpResponseNotFound("<h1>the invalid input plz contact MR.Rohith Uppunuthula</h1>")
+        raise Http404()
